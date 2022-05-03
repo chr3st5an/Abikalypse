@@ -16,8 +16,8 @@ __all__ = ['MongoDB']
 
 load_dotenv()
 
-MONGO_HOST = os.getenv('MONGO_HOST')
 DATABASE   = os.getenv('DATABASE')
+MONGO_HOST = os.getenv('MONGO_HOST')
 
 
 class MongoDB(object):
@@ -31,6 +31,8 @@ class MongoDB(object):
     def __init__(self, host: str = MONGO_HOST, database: str = DATABASE) -> None:
         """Establish a connection with MongoDB
 
+        Create all necessary collections
+
         Parameters
         ----------
         host : str, optional
@@ -40,13 +42,24 @@ class MongoDB(object):
             by default DATABASE
         """
 
-        self.conn = MongoClient(host)[database]
+        self.__conn = MongoClient(host)[database]
+
+        required_collections = [
+            'students',
+            'photos'
+        ]
+
+        available_collections = self.__conn.list_collection_names()
+
+        for collection_name in required_collections:
+            if collection_name not in available_collections:
+                self.__conn.create_collection(collection_name)
 
     def __find(self, collection: str, key: Any, value: Any) -> Optional[Any]:
         if not (collection and key):
             return None
 
-        return self.conn[collection].find_one({key: value})
+        return self.__conn[collection].find_one({key: value})
 
     def find_student(self, _id: Optional[int]) -> Optional[Student]:
         """Find a student by its unique identifier
@@ -63,6 +76,9 @@ class MongoDB(object):
         """
 
         student = self.__find('students', '_id', _id)
+
+        if student is None:
+            return None
 
         if student['photo'] is not None:
             student['photo'] = Photo(**student['photo'])
@@ -105,7 +121,10 @@ class MongoDB(object):
             list of names
         """
 
-        return list(map(lambda data: data['name'], self.conn['students'].find()))
+        return list(map(lambda data: data['name'], self.__conn['students'].find()))
+
+    def fetch_all_students(self):
+        return self.__conn['students'].find()
 
     def insert_student(self, name: str, about: Dict[str, Any], photo: Optional[PathLike] = None) -> Student:
         """Create and insert a student into the database
@@ -134,7 +153,7 @@ class MongoDB(object):
 
         student = Student(_id, name, about, Photo.from_path(photo))
 
-        self.conn['students'].insert_one(student.as_dict())
+        self.__conn['students'].insert_one(student.as_dict())
 
         return student
 
@@ -153,6 +172,6 @@ class MongoDB(object):
         #> Adding the entry to the guest book
         student.guest_book.append(entry)
 
-        self.conn['students'].update_one({'_id': _id},
+        self.__conn['students'].update_one({'_id': _id},
             {'$set': {'guest_book': copy.deepcopy(student.guest_book)}}
         )
