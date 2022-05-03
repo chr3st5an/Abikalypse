@@ -10,12 +10,12 @@ import re
 class Photo(object):
     """Represent an image
 
-    Stores raw image data encoded in base64
+    Store raw image data encoded in base64
 
     Classmethods
     ------------
     cls.from_path(Optional[Union[PathLike, str]])
-        Reads the data of the image specified by the
+        Read the data of the image specified by the
         given path and returns an instance of this class
 
     Attributes
@@ -32,14 +32,14 @@ class Photo(object):
     Methods
     -------
     obj.decode()
-        Decodes the image data in utf-8
+        Decode the image data to utf-8
     obj.as_dict()
-        Returns a dict representing the object
+        Return a dict representing the object
 
     Supported Operations
     --------------------
     `str(obj)`
-        Returns the str representation of the object
+        Return a str representation of the photo
 
     Author
     ------
@@ -137,7 +137,7 @@ class Photo(object):
         return self.data.decode('utf-8')
 
     def as_dict(self) -> Dict[str, Any]:
-        """Retrieve a dict representing this object
+        """Return a dict representing this object
         """
 
         return {
