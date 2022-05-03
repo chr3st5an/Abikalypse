@@ -31,7 +31,7 @@ class MongoDB(object):
     def __init__(self, host: str = MONGO_HOST, database: str = DATABASE) -> None:
         """Establish a connection with MongoDB
 
-        Create all necessary collections
+        Also create all necessary collections
 
         Parameters
         ----------
@@ -61,7 +61,7 @@ class MongoDB(object):
 
         return self.__conn[collection].find_one({key: value})
 
-    def __init_student(self, data) -> Student:
+    def __init_student(self, data: Dict[str, Any]) -> Student:
         data = copy.deepcopy(data)
 
         if data.get('photo'):
@@ -128,8 +128,8 @@ class MongoDB(object):
 
         return list(map(lambda data: data['name'], self.__conn['students'].find()))
 
-    def fetch_all_students(self):
-        """
+    def fetch_all_students(self) -> List[Student]:
+        """Return a list with all students
         """
 
         return [self.__init_student(data) for data in self.__conn['students'].find()]
@@ -165,8 +165,27 @@ class MongoDB(object):
 
         return student
 
-    def insert_guestbook_entry(self, _id: int, author: str, content: str) -> None:
-        student = self.find_student(_id)
+    def insert_guestbook_entry(self, student_id: int, author: str, content: str) -> None:
+        """Create a guest book entry
+
+        Parameters
+        ----------
+        student_id : int
+            Unique identifier of the student whose guest book
+            is tried to be edited
+        author : str
+            The author of the message that is tried to be added
+        content : str
+            The message that is tried to be added
+
+        Raises
+        ------
+        StudentExistsError
+            Student whose guest book is tried to be edited
+            does not exist
+        """
+
+        student = self.find_student(student_id)
 
         if not student:
             raise StudentExistsError("mongodb: student doesn't exist")
@@ -180,6 +199,6 @@ class MongoDB(object):
         #> Adding the entry to the guest book
         student.guest_book.append(entry)
 
-        self.__conn['students'].update_one({'_id': _id},
+        self.__conn['students'].update_one({'_id': student_id},
             {'$set': {'guest_book': copy.deepcopy(student.guest_book)}}
         )
