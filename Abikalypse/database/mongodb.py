@@ -61,6 +61,14 @@ class MongoDB(object):
 
         return self.__conn[collection].find_one({key: value})
 
+    def __init_student(self, data) -> Student:
+        data = copy.deepcopy(data)
+
+        if data.get('photo'):
+            data['photo'] = Photo(**data['photo'])
+
+        return Student(**data)
+
     def find_student(self, _id: Optional[int]) -> Optional[Student]:
         """Find a student by its unique identifier
 
@@ -80,10 +88,7 @@ class MongoDB(object):
         if student is None:
             return None
 
-        if student['photo'] is not None:
-            student['photo'] = Photo(**student['photo'])
-
-        return Student(**student) if student else None
+        return self.__init_student(student)
 
     def find_student_by_name(self, name: Optional[str]) -> Optional[Student]:
         """Find a student by its name and return the first match
@@ -106,10 +111,10 @@ class MongoDB(object):
 
         student = self.__find('students', 'name', name)
 
-        if student['photo'] is not None:
-            student['photo'] = Photo(**student['photo'])
+        if student is None:
+            return None
 
-        return Student(**student) if student else None
+        return self.__init_student(student)
 
     def list_student_names(self) -> List[str]:
         """Retrieve a list containing the names of every student
@@ -124,7 +129,10 @@ class MongoDB(object):
         return list(map(lambda data: data['name'], self.__conn['students'].find()))
 
     def fetch_all_students(self):
-        return self.__conn['students'].find()
+        """
+        """
+
+        return [self.__init_student(data) for data in self.__conn['students'].find()]
 
     def insert_student(self, name: str, about: Dict[str, Any], photo: Optional[PathLike] = None) -> Student:
         """Create and insert a student into the database
