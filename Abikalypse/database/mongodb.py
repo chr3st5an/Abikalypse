@@ -196,7 +196,6 @@ class MongoDB(object):
             'creation_date': datetime.now().strftime('%d/%m/%Y')
         }
 
-        #> Adding the entry to the guest book
         student.guest_book.append(entry)
 
         self.__conn['students'].update_one({'_id': student_id},

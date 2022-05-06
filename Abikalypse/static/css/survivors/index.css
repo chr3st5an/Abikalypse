@@ -1,0 +1,30 @@
+button {
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.7s ease;
+    border-color: #FF6347;
+    background-color: #FF6347;
+}
+
+.list-survivors {
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 10px;
+    background-color: #50fa7b;
+    box-shadow: 0px 3px 20px #50fa7b;
+    border-radius: 20px;
+    color: #000000;
+}
+
+.list-survivors h1 {
+    text-align: left;
+    padding: 5px;
+}
+
+.wrapper {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
