@@ -17,3 +17,12 @@ const preventRightClickOnImages = () => {
         }, false);
     }
 }
+
+/**
+ * Removes every script tag within the body tag
+ */
+const removeScriptTags = () => {
+    for (let scriptTag of document.querySelectorAll('body script')) {
+        scriptTag.remove();
+    }
+}

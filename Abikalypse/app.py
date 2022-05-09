@@ -5,6 +5,8 @@ from jinja2 import FileSystemLoader
 from aiohttp import web
 import aiohttp_jinja2
 
+from Abikalypse.database.models.photo import Photo
+
 from . import database
 
 

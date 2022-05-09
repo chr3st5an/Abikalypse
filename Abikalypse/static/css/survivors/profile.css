@@ -8,10 +8,22 @@ Author
 
 ::placeholder {
     color: #000000;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 ::-ms-input-placeholder {
     color: #000000;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 main {
@@ -111,6 +123,20 @@ form button:hover {
     background-color: #000000;
     color: #ffffff;
 }
+
+.toast {
+    text-align: center;
+    margin: 25px 0 0 0;
+    background-color: #ea3c53;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 14%;
+    right: 2%;
+    width: 20%;
+    visibility: hidden;
+}
+
 
 @media only screen and (max-width: 1500px) {
     .input-wrapper {
