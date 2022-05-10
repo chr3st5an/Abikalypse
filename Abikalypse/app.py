@@ -1,11 +1,10 @@
 import os
+import re
 
 from aiohttp.web_request import Request
 from jinja2 import FileSystemLoader
 from aiohttp import web
 import aiohttp_jinja2
-
-from Abikalypse.database.models.photo import Photo
 
 from . import database
 
@@ -53,9 +52,6 @@ async def create_comment(request: Request):
 
     username, content = data.get('username'), data.get('content')
 
-    if not (username and content):
-        return web.Response(status=400, text='400: invalid form')
-
     if not ((3 <= len(username) <= 16) and (4 <= len(content) <= 128)):
         return web.Response(status=400, text='400: invalid form')
 
@@ -64,10 +60,10 @@ async def create_comment(request: Request):
     except database.StudentExistsError:
         return web.Response(status=400, text='400: invalid form')
 
-    if data.get('context-url') and request.host in data['context-url']:
-        raise web.HTTPFound(data['context-url'])
+    if data.get('context-url') and re.search(rf'{request.host}.*?%C3%BCberlebende\/\d+', data['context-url']):
+        raise web.HTTPFound(data['context-url'] + '#guest-book')
 
-    raise web.HTTPFound('/schüler')
+    raise web.HTTPFound('/überlebende')
 
 
 @routes.get('/fotos')

@@ -7,13 +7,20 @@
     margin: 0 20%;
 }
 
-.wrapper   { display: grid; grid-template-columns: 1fr 1fr; }
-.inner     { text-align: left; margin-left: 5%; }
-#questions { border-right: 1px solid #ffffff; }
-h4 span    { color: blue; cursor: pointer; }
+.line-break { margin: 15px 0; }
+.wrapper    { display: grid; grid-template-columns: 1fr 1fr; }
+.inner      { text-align: left; margin-left: 5%; }
+#questions  { border-right: 1px solid #ffffff; }
+h3 span     { color: #00FFFF; cursor: pointer; }
+
+#good-luck  {
+    padding: 10px;
+    border-top: 1px solid #ffffff;
+}
 
 @media only screen and (max-width: 1000px) {
-    .content { margin: 0 19%; }
+    .content  { margin: 0 19%; }
+    h3 span u { text-decoration: none; }
 }
 
 @media only screen and (max-width: 950px) {

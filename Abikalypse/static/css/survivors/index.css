@@ -4,10 +4,12 @@
     padding: 10px;
     background-color: #282a36;
     border-radius: 20px;
-    color: #000000;
+    color: #ffffff;
 }
 
-.list-survivors h1 { padding: 5px; color: #ffffff; }
+.list-survivors h1 {
+    padding: 5px;
+}
 
 .wrapper {
     padding: 10px;
@@ -23,46 +25,59 @@
 }
 
 .survivor-card-profile-link button {
+    font-family: 'Bebas Neue', cursive;
     padding: 5px;
     margin: 5px;
     width: 80%;
     background-color: transparent;
-    border: solid 1px #000000;
-    transition: 0.7s ease;
-}
-
-.survivor-card-profile-link button:hover {
     color: #ffffff;
-    background-color: #000000;
+    border: solid 1px #ffffff;
+    transition: 0.7s ease;
     cursor: pointer;
 }
 
 @media only screen and (max-width: 1500px) {
-    .wrapper { grid-template-columns: 1fr 1fr 1fr; }
+    .wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media only screen and (max-width: 1300px) {
-    .list-survivors { margin: 5% 25% 0 25%; }
+    .list-survivors {
+        margin: 5% 25% 0 25%;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
-    .wrapper        { grid-template-columns: 1fr 1fr; }
-    .list-survivors { margin: 5% 20% 0 20%; }
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .list-survivors {
+        margin: 5% 20% 0 20%;
+    }
 }
 
 @media only screen and (max-width: 750px) {
-    .list-survivors { margin: 5% 15% 0 15%; }
+    .list-survivors {
+        margin: 5% 15% 0 15%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
-    .list-survivors { margin: 5% 10% 0 10%; }
+    .list-survivors {
+        margin: 5% 10% 0 10%;
+    }
 }
 
 @media only screen and (max-width: 450px) {
-    .list-survivors { margin: 5% 5% 0 5%; }
+    .list-survivors {
+        margin: 5% 5% 0 5%;
+    }
 }
 
 @media only screen and (max-width: 350px) {
-    .list-survivors { margin: 2% 5% 0 2%; }
+    .list-survivors {
+        margin: 2% 5% 0 2%;
+    }
 }
-

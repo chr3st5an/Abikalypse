@@ -1,15 +1,25 @@
+const aspectRatio = 0.5369;
+const imgElement  = document.createElement('img');
+
+
 window.onload = () => {
+    /* Add homepage group image */
     {
-        const photoFormat = 0.5369;
-
         let imgContainer = document.getElementById('home-img');
-        let width        = window.innerWidth;
-        let height       = width * photoFormat;
 
-        imgContainer.innerHTML = `
-            <img src="/img/group_photos/gruppenfoto-letzter_tag.png" width='${width}' height='${height}'/>
-        `;
+        imgElement.setAttribute('src', '/img/group_photos/gruppenfoto-letzter_tag.png');
+        imgElement.setAttribute('width', String(window.innerWidth));
+        imgElement.setAttribute('height', String(window.innerWidth * aspectRatio));
+        imgElement.setAttribute('draggable', 'false');
+        imgElement.setAttribute('alt', 'Cooles Gruppenfoto');
+
+        imgContainer.appendChild(imgElement);
     }
 
     removeScriptTags();
+}
+
+window.onresize = () => {
+    imgElement.setAttribute('width', window.innerWidth);
+    imgElement.setAttribute('height', window.innerWidth * aspectRatio);
 }

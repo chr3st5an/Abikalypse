@@ -9,18 +9,21 @@
         <main>
             <div class="card">
                 <h1 class="title">{{ student.forename + " " + student.surname[0] }}.</h1>
+                <script type="text/javascript">
+                    const size = document.getElementsByClassName('card')[0].offsetWidth - 44;
                 {% if student.has_photo %}
-                    <script type="text/javascript">
-                        let size = document.getElementsByClassName('card')[0].offsetWidth - 44;
-
-                        document.write(
-                            `<img class="noselect" src="data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}" alt="Profilfoto" title="Überlebende/r" width="${size}" height="${size}"/>`
-                        );
-                    </script>
-                    <noscript>
-                        <p>Bitte aktiviere JavaScript, um dieses Foto sehen zu können</p>
-                    </noscript>
+                    document.write(
+                        `<img class="noselect" src="data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}" alt="Profilfoto" title="Überlebende/r" width="${size}" height="${size}"/>`
+                    );
+                {% else %}
+                    document.write(
+                        `<img class="noselect" src="/img/default_profile.png" alt="Profilfoto" title="Überlebende/r" width="${size}" height="${size}"/>`
+                    );
                 {% endif %}
+                </script>
+                <noscript>
+                    <p>Bitte aktiviere JavaScript, um dieses Foto sehen zu können</p>
+                </noscript>
                 <section class="about">
                     <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
@@ -39,7 +42,7 @@
                     </div>
                 </section>
             </div>
-            <div class="guest-book">
+            <div id="guest-book">
                 <section>
                     <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-postcard-heart" viewBox="0 0 16 16">
@@ -55,14 +58,16 @@
                         </div>
                     {% else %}
                         {% for post in student.guest_book %}
-                            <h4>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                                {{ post["author"]|e }} ({{ post["creation_date"]|e }})
-                            </h4>
-                            <p>{{ post["content"]|e }}</p>
+                            <div class="comment">
+                                <h4>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                    {{ post["author"]|e }} ({{ post["creation_date"]|e }})
+                                </h4>
+                                <p>{{ post["content"]|e }}</p>
+                            </div>
                         {% endfor %}
                     {% endif %}
                     </div>
@@ -99,9 +104,6 @@
                             </div>
                         </button>
                     </form>
-                    <noscript>
-                        Bitte aktiviere JavaScript
-                    </noscript>
                 </section>
             </div>
         </main>

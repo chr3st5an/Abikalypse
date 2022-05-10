@@ -1,42 +1,51 @@
 {% extends "base.html" %}
-{% block links %}
-    {{ super() }}
-    <link href="/css/index.css" rel="stylesheet">
-    <script src="/js/index.js" type="text/javascript"></script>
-{% endblock %}
-{% block body %}
-    <main>
-        <div>
-            <div id="home-img">
+{%- block links %}
+        {{- super() }}
+        <link rel="stylesheet" href="/css/index.css">
+        <script src="/js/index.js" type="text/javascript"></script>
+{%- endblock %}
+{%- block body %}
+        <main>
+            <div>
+                <div id="home-img">
+                </div>
             </div>
-        </div>
-        <hr width="90%"/>
-        <div class="content noselect">
-            <section>
-                <div class="headline">
-                    <h1 id="header-title">💣 Willkommen zur ABIkalypse 💥</h1>
-                </div>
-            </section>
-            <section>
-                <div class="wrapper">
-                    <div id="questions">
-                        <h2>Fragen</h2>
-                        <section class="inner">
-                            <h4>👉 Wer hat überlebt? - <i>Keine Ahnung</i></h4>
-                            <h4>💫 Wann? - <i>2022</i></h4>
-                            <h4>😅 Wars lustig? - <i>Wahrscheinlich</i></h4>
-                        </section>
+            <div class="line-break">
+                <hr width="90%"/>
+            </div>
+            <div class="content noselect">
+                <section>
+                    <div class="headline">
+                        <h1 id="header-title">💣 Willkommen zur ABIkalypse 💥</h1>
                     </div>
-                    <div>
-                        <h2>Wichtige Links</h2>
-                        <section class="inner">
-                            <h4>🔗 <span onclick="location.href='/'"><u>Homepage</u></span></h4>
-                            <h4>🔗 <span onclick="location.href='/fotos'"><u>Fotos</u></span></h4>
-                            <h4>🔗 <span onclick="location.href='/überlebende'"><u>Schüler</u></span></h4>
-                        </section>
+                </section>
+                <section>
+                    <div class="wrapper noselect">
+                        <div id="questions">
+                            <h2>Fragen</h2>
+                            <section class="inner">
+                                <h3>👉 Wer hat überlebt? - <i>Keine Ahnung</i></h3>
+                                <h3>💫 Wann? - <i>2022</i></h3>
+                                <h3>😅 Wars lustig? - <i>Wahrscheinlich</i></h3>
+                                <h3>🏫 13 Jahre Schule - <i>✅ Check</i></h3>
+                            </section>
+                        </div>
+                        <div>
+                            <h2>Links</h2>
+                            <section class="inner">
+                                <h3>🔗 <span onclick="location.href='/'"><u>Homepage</u></span></h3>
+                                <h3>🔗 <span onclick="location.href='/fotos'"><u>Fotos</u></span></h3>
+                                <h3>🔗 <span onclick="location.href='/überlebende'"><u>Schüler</u></span></h3>
+                                <h3>🔗 <span onclick="window.open('https://gesamtschule-duisburg-mitte-de.jimdofree.com/')"><u>Gdmpappen</u></span></h3>
+                            </section>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </main>
-{% endblock %}
+                </section>
+                <section>
+                    <div id="good-luck">
+                        <h3>Viel Glück auf den weiteren Weg</h3>
+                    </div>
+                </section>
+            </div>
+        </main>
+{%- endblock %}

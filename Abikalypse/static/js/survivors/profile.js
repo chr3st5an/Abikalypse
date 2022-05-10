@@ -36,3 +36,14 @@ window.onload = () => {
         }
     }
 }
+
+window.onresize = () => {
+    let profileImg = document.querySelector('.card img');
+
+    if (!profileImg) return null;
+
+    let size = document.getElementsByClassName('card')[0].offsetWidth - 44;
+
+    profileImg.setAttribute('width', String(size));
+    profileImg.setAttribute('height', String(size));
+}
