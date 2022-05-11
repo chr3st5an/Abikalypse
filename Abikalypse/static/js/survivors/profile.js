@@ -12,7 +12,7 @@ window.onload = () => {
             let author  = input[0].value;
             let content = input[1].value;
 
-            if (!(3 < author.length && author.length < 16) || !(4 < content.length && content.length < 128)) {
+            if (!(1 < author.length && author.length < 17) || !(3 < content.length && content.length < 129)) {
                 e.preventDefault();
 
                 if (!(3 < author.length && author.length < 16)) {
