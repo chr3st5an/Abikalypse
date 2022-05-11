@@ -12,18 +12,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="@chr3st5an">
-        <meta name="description" content="Inoffiziele Homepage der gdmpappen Abikalypse Stufe, lol">
-        <meta name="keywords" content="abikalypse">
-        <title>{% block title -%}Abikalypse{% endblock -%}</title>
+        <meta name="description" content="Inoffiziele Homepage der gdmpappen Abikalypse Stufe">
+        <meta name="keywords" content="abikalypse, gdmpappen">
+        <meta name="robots" content="noimageindex">
+        <title>{% block title %}Abikalypse{% endblock %}</title>
         <link rel="icon" href="/img/favico.ico">
-        {% block links -%}
+        {% block links %}
         <link rel="stylesheet" href="/css/base.css">
-        <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        {%- endblock %}
+        {% endblock %}
         <script src="/js/util.js" type="text/javascript"></script>
     </head>
     <body>
-        {% block navbar -%}
+        {% block navbar %}
         <div class="navbar noselect">
             <ul>
                 <li id="navbar-abikalypse"><a onclick="location.href='/'"><b>Abikalypse</b></a></li>
@@ -38,8 +38,8 @@
                 </li>
             </ul>
         </div>
-        {%- endblock %}
-        {%- block body %}{%- endblock %}
+        {% endblock %}
+        {% block body %}{% endblock %}
         <footer class="noselect">
             <div>
                 <h3>Made with <span style="color:red;">&heartsuit;</span> by @chr3st5an</h3>
