@@ -4,3 +4,4 @@ aiohttp_jinja2
 gunicorn
 pymongo
 dnspython
+python-dotenv

@@ -4,4 +4,4 @@ from Abikalypse import app
 
 
 if __name__ == '__main__':
-    run_app(app, host="localhost")
+    run_app(app)
