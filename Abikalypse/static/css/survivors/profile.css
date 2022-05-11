@@ -162,6 +162,17 @@ form button:hover {
     main {
         margin-left: 15%;
         margin-right: 15%;
+        font-size: large;
+    }
+
+    /* Normal state */
+    form button:hover {
+        background-color: transparent;
+        color: #000000;
+    }
+
+    form button:active {
+        transform: scale(0.9);
     }
 }
 
@@ -170,7 +181,6 @@ form button:hover {
         margin-top: 20px;
         margin-left: 10%;
         margin-right: 10%;
-        font-size: large;
     }
 }
 

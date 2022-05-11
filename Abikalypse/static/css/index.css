@@ -7,11 +7,28 @@
     margin: 0 20%;
 }
 
-.line-break { margin: 15px 0; }
-.wrapper    { display: grid; grid-template-columns: 1fr 1fr; }
-.inner      { text-align: left; margin-left: 5%; }
-#questions  { border-right: 1px solid #ffffff; }
-h3 span     { color: #00FFFF; cursor: pointer; }
+.line-break {
+    margin: 15px 0;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.inner {
+    text-align: left;
+    margin-left: 5%;
+}
+
+#questions {
+    border-right: 1px solid #ffffff;
+}
+
+h3 span {
+    color: #00FFFF;
+    cursor: pointer;
+}
 
 #good-luck  {
     padding: 10px;
@@ -19,60 +36,98 @@ h3 span     { color: #00FFFF; cursor: pointer; }
 }
 
 @media only screen and (max-width: 1000px) {
-    .content  { margin: 0 19%; }
-    h3 span u { text-decoration: none; }
+    .content {
+        margin: 0 19%;
+    }
+
+    h3 span u {
+        text-decoration: none;
+    }
 }
 
 @media only screen and (max-width: 950px) {
-    .content { margin: 0 18%; }
+    .content {
+        margin: 0 18%;
+    }
 }
 
 @media only screen and (max-width: 900px) {
-    .content { margin: 0 17%; }
+    .content {
+        margin: 0 17%;
+    }
 }
 
 @media only screen and (max-width: 850px) {
-    .content { margin: 0 16% }
+    .content {
+        margin: 0 16%
+    }
 }
 
 @media only screen and (max-width: 800px) {
-    .content { margin: 0 15% }
+    .content {
+        margin: 0 15%
+    }
 }
 
 @media only screen and (max-width: 750px) {
-    .content   { margin: 0 14% }
-    .wrapper   { grid-template-columns: 1fr; }
-    #questions { border-right: transparent; border-bottom: 1px solid #ffffff; }
+    .content {
+        margin: 0 14%
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #questions {
+        border-right: transparent;
+        border-bottom: 1px solid #ffffff;
+    }
 }
 
 @media only screen and (max-width: 700px) {
-    .content { margin: 0 13% }
+    .content {
+        margin: 0 13%
+    }
 }
 
 @media only screen and (max-width: 650px) {
-    .content { margin: 0 12% }
+    .content {
+        margin: 0 12%
+    }
 }
 
 @media only screen and (max-width: 600px) {
-    .content { margin: 0 11% }
+    .content {
+        margin: 0 11%
+    }
 }
 
 @media only screen and (max-width: 550px) {
-    .content { margin: 0 10% }
+    .content {
+        margin: 0 10%
+    }
 }
 
 @media only screen and (max-width: 500px) {
-    .content { margin: 0 9% }
+    .content {
+        margin: 0 9%
+    }
 }
 
 @media only screen and (max-width: 450px) {
-    .content { margin: 0 8% }
+    .content {
+        margin: 0 8%
+    }
 }
 
 @media only screen and (max-width: 400px) {
-    .content { margin: 0 6% }
+    .content {
+        margin: 0 6%
+    }
 }
 
 @media only screen and (max-width: 350px) {
-    .content { margin: 0 4% }
+    .content {
+        margin: 0 4%
+    }
 }

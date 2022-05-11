@@ -32,17 +32,13 @@
     background-color: transparent;
     color: #ffffff;
     border: solid 1px #ffffff;
-    transition: 0.7s ease;
+    transition: all 0.7s ease;
     cursor: pointer;
 }
 
 .survivor-card-profile-link button:hover {
     background-color: #ffffff;
     color: #000000;
-}
-
-.survivor-card-profile-link button:active {
-    transform: scale(0.9);
 }
 
 @media only screen and (max-width: 1500px) {
@@ -75,6 +71,10 @@
     .survivor-card-profile-link button:hover {
         background-color: transparent;
         color: #ffffff;
+    }
+
+    .survivor-card-profile-link button:active {
+        transform: scale(0.9);
     }
 }
 

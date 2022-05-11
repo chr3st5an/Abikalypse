@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue');
 
 
-html { height: 100%; width: 100%; }
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
 
 body {
     font-family: 'Bebas Neue', cursive;
@@ -10,8 +18,6 @@ body {
     min-height: 100vh;
     background-color: #44475a;
 }
-
-html, body { overflow-x: hidden; overflow-y: auto; }
 
 .navbar {
     top: 0px;
@@ -70,6 +76,11 @@ footer {
 }
 
 @media only screen and (max-width: 400px) {
-    #navbar-github { display: none; }
-    footer         { font-size: 14px; }
+    #navbar-github {
+        display: none;
+    }
+
+    footer {
+        font-size: 14px;
+    }
 }
