@@ -1,41 +1,35 @@
 {% extends "base.html" %}
 {% block title %} Überlebende {% endblock %}
-{%- block links -%}
+{% block links %}
         {{ super() }}
         <link href="/css/survivors/index.css" rel="stylesheet">
         <script src="/js/survivors/index.js" type="text/javascript"></script>
-{%- endblock -%}
+{% endblock %}
 {% block body %}
         <main>
             <div class="list-survivors noselect">
                 <h1 title="Nur {{ students.__len__() }} haben überlebt">Überlebende</h1>
                 <div class="wrapper">
-                {%- for student in students -%}
+                {% for student in students %}
                     {# Allowing "/überlebende#max-musterman" #}
                     <div id="{{ '-'.join(student.name.split()).lower() }}">
                         <div class="survivor-card">
                             <div class="survivor-card-photo">
-                            {%- if student.has_photo %}
                                 <script type="text/javascript">
                                     (function(){
                                         let size = document.getElementsByClassName('survivor-card')[0].offsetWidth - 40;
 
+                                    {% if student.has_photo %}
                                         document.write(`
                                             <img src='data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}' alt='Profile Foto' width='${size}' height='${size}' style='border-radius:50%;'/>
                                         `);
-                                    })();
-                                </script>
-                            {%- else %}
-                                <script type="text/javascript">
-                                    (function(){
-                                        let size = document.getElementsByClassName('survivor-card')[0].offsetWidth - 40;
-
+                                    {% else %}
                                         document.write(`
                                             <img src="/img/default_profile.png" width='${size}' height='${size}' style='border-radius:50%;'/>
                                         `);
+                                    {% endif %}
                                     })();
                                 </script>
-                            {%- endif %}
                             </div>
                             <div class="survivor-card-name">
                                 <h4>{{ student.name.title()|e }}</h4>
@@ -47,8 +41,8 @@
                             </div>
                         </div>
                     </div>
-                {%- endfor -%}
+                {% endfor %}
                 </div>
             </div>
         </main>
-{%- endblock %}
+{% endblock %}
