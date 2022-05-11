@@ -69,7 +69,9 @@ async def create_comment(request: Request):
 @routes.get('/fotos')
 @aiohttp_jinja2.template('photos/index.html')
 async def photo_index(request: Request) -> None:
-    ...
+    return {
+        'files': os.listdir(path + '/img/group_photos/')
+    }
 
 
 def init() -> None:

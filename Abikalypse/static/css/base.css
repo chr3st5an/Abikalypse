@@ -14,12 +14,12 @@ body {
 html, body { overflow-x: hidden; overflow-y: auto; }
 
 .navbar {
-    top: 0;
-    right: 0;
-    left: 0;
+    top: 0px;
+    width: 100%;
     position: fixed;
     background-color: #282a36;
     overflow: hidden;
+    z-index: 10000;
 }
 
 .navbar ul {

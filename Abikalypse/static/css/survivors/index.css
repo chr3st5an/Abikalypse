@@ -36,6 +36,15 @@
     cursor: pointer;
 }
 
+.survivor-card-profile-link button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.survivor-card-profile-link button:active {
+    transform: scale(0.9);
+}
+
 @media only screen and (max-width: 1500px) {
     .wrapper {
         grid-template-columns: 1fr 1fr 1fr;
@@ -61,6 +70,11 @@
 @media only screen and (max-width: 750px) {
     .list-survivors {
         margin: 5% 15% 0 15%;
+    }
+
+    .survivor-card-profile-link button:hover {
+        background-color: transparent;
+        color: #ffffff;
     }
 }
 

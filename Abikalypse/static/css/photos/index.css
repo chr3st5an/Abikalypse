@@ -1,0 +1,26 @@
+.group-photos {
+    text-align: center;
+}
+
+.wrapper {
+    margin-top: 2%;
+}
+
+.img-container {
+    padding: 10px 5px 10px 5px;
+    margin: 2% 6% 0 6%;
+    border-radius: 5px;
+    background-color: #222536;
+    color: #ffffff;
+}
+
+.img-container img {
+    transition: 1s ease;
+}
+
+@media only screen and (max-width: 700px){
+    .img-container {
+        background-color: #f8f8f2;
+        color: #000000;
+    }
+}
