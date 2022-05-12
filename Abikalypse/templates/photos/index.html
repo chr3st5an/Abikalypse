@@ -1,25 +1,23 @@
 {% extends "base.html" %}
 {% block title %} Fotos {% endblock %}
 {% block links %}
-        {{- super() }}
+        {{ super() }}
         <link rel="stylesheet" href="/css/photos/index.css">
         <script src="/js/photos/index.js" type="text/javascript"></script>
 {% endblock %}
 {% block body %}
         <main>
-            <section class="group-photos">
-                <div class="wrapper">
-                    {% for file_name in files %}
-                        <div class="img-container">
-                            <div>
-                                <img draggable="false" src="/img/group_photos/{{ file_name }}" alt="{{ file_name }}"/>
-                            </div>
-                            <div>
-                                <p>{{ file_name[:-4] }}</p>
-                            </div>
+            <section>
+                {% for file_name in files %}
+                    <div class="img-container" tabindex="-1">
+                        <div>
+                            <img draggable="false" src="/img/group_photos/{{ file_name }}" alt="{{ file_name }}"/>
                         </div>
-                    {% endfor %}
-                </div>
+                        <div>
+                            <p>{{ file_name[:-4] }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </section>
         </main>
 {% endblock %}
