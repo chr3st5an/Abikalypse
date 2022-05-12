@@ -66,6 +66,9 @@ async def create_comment(request: Request):
     if not ((3 <= len(username) <= 16) and (4 <= len(content) <= 128)):
         return aiohttp_jinja2.render_template('err/400.html', request, None, status=400)
 
+    if not re.match(r'[a-zA-Z]\w+', username):
+        return aiohttp_jinja2.render_template('err/400.html', request, None, status=400)
+
     try:
         mongodb.insert_guestbook_entry(int(request.match_info.get('id')), data['username'], data['content'])
     except database.StudentExistsError:
