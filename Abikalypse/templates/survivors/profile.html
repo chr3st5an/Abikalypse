@@ -9,21 +9,9 @@
         <main>
             <div class="card">
                 <h1 class="title">{{ student.forename + " " + student.surname[0] }}.</h1>
-                <script type="text/javascript">
-                    const size = document.getElementsByClassName('card')[0].offsetWidth - 44;
-                {% if student.has_photo %}
-                    document.write(
-                        `<img class="noselect" src="data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}" alt="Profilfoto" title="Überlebende/r" width="${size}" height="${size}"/>`
-                    );
-                {% else %}
-                    document.write(
-                        `<img class="noselect" src="/img/default_profile.png" alt="Profilfoto" title="Überlebende/r" width="${size}" height="${size}"/>`
-                    );
-                {% endif %}
-                </script>
-                <noscript>
-                    <p>Bitte aktiviere JavaScript, um dieses Foto sehen zu können</p>
-                </noscript>
+                <div>
+                    <img draggable="false" src="{% if student.has_photo %}data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}{% else %}/img/default_profile.png{% endif %}" alt="{{ student.forename }}s Profilfoto">
+                </div>
                 <section class="about">
                     <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">

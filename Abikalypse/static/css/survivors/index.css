@@ -24,6 +24,12 @@
     background-color: #8a2be2;
 }
 
+.survivor-card-photo img {
+    width: 80%;
+    height: auto;
+    border-radius: 50%;
+}
+
 .survivor-card-profile-link button {
     font-family: 'Bebas Neue', cursive;
     padding: 5px;
@@ -92,6 +98,6 @@
 
 @media only screen and (max-width: 350px) {
     .list-survivors {
-        margin: 2% 5% 0 2%;
+        margin: 5% 2% 0 2%;
     }
 }

@@ -12,9 +12,13 @@ section {
     transition: all 1.1s ease;
 }
 
+.img-container img {
+    width: 98%;
+    height: auto;
+}
+
 .img-container:focus {
     transform: scale(0.8);
-    transition: all 1.1s ease;
     outline: none;
 }
 

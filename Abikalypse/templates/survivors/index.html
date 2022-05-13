@@ -15,21 +15,7 @@
                     <div id="{{ '-'.join(student.name.split()).lower() }}">
                         <div class="survivor-card">
                             <div class="survivor-card-photo">
-                                <script type="text/javascript">
-                                    (function(){
-                                        let size = document.getElementsByClassName('survivor-card')[0].offsetWidth - 40;
-
-                                    {% if student.has_photo %}
-                                        document.write(`
-                                            <img src='data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}' alt='Profile Foto' width='${size}' height='${size}' style='border-radius:50%;'/>
-                                        `);
-                                    {% else %}
-                                        document.write(`
-                                            <img src="/img/default_profile.png" width='${size}' height='${size}' style='border-radius:50%;'/>
-                                        `);
-                                    {% endif %}
-                                    })();
-                                </script>
+                                <img draggable="false" src="{% if student.has_photo %}data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}{% else %}/img/default_profile.png{% endif %}" alt="{{ student.forename }}s Profilfoto">
                             </div>
                             <div class="survivor-card-name">
                                 <h4>{{ student.name.title()|e }}</h4>

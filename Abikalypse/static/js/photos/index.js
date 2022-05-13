@@ -1,18 +1,6 @@
 window.onload = () => {
     for (let container of document.querySelectorAll('.img-container')) {
-        let photo = container.getElementsByTagName('img')[0];
-
-        photo.setAttribute('width', String(window.innerWidth / 1.2));
-        photo.setAttribute('height', 'auto');
-
         container.addEventListener('mousedown', e => e.preventDefault() || false);
-    }
-}
-
-window.onresize = () => {
-    /* Resize photos */
-    for (let photo of document.getElementsByTagName('img')) {
-        photo.setAttribute('width', String(window.innerWidth / 1.2));
     }
 }
 

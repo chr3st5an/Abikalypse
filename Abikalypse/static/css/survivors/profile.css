@@ -32,13 +32,15 @@ main {
     color: black;
 }
 
-img {
+.card img {
+    width: 100%;
+    height: auto;
     margin-bottom: 20px;
     border-radius: 20px;
     transition: 1s ease;
 }
 
-img:hover {
+.card img:hover {
     border-radius: 50%;
     filter: grayscale(100%);
 }
