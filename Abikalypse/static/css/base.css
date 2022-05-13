@@ -24,8 +24,11 @@ body {
     width: 100%;
     position: fixed;
     background-color: #282a36;
+    color: #f8f8f2;
     overflow: hidden;
     z-index: 10000;
+    font-size: 20px;
+    transition: all 0.7s ease;
 }
 
 .navbar ul {
@@ -37,13 +40,11 @@ body {
 .navbar li {
     display: inline;
     float: left;
-    font-size: 20px;
     text-align: center;
 }
 
 .navbar li a {
     display: block;
-    color: #f8f8f2;
     padding: 14px 16px;
     text-decoration: none;
 }
@@ -51,6 +52,10 @@ body {
 .navbar li a:hover {
     background-color:#44475a;
     cursor: pointer;
+}
+
+.hamburger {
+    display: none;
 }
 
 .noselect {
@@ -82,5 +87,19 @@ footer {
 
     footer {
         font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 325px) {
+    .navbar, #navbar-homepage, #navbar-überlebende, #navbar-fotos {
+        display: none;
+    }
+
+    .navbar li a:hover {
+        background-color: transparent;
+    }
+
+    .hamburger {
+        display: block;
     }
 }

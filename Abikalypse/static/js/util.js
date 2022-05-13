@@ -26,3 +26,19 @@ const removeScriptTags = () => {
         scriptTag.remove();
     }
 }
+
+let navbarExpanded = false;
+
+/**
+ * Expand / collapse the navbar
+ */
+const navbarExpand = () => {
+    const navbar = document.getElementsByClassName('hamburger')[0];
+    let items    = Array.from(navbar.getElementsByTagName('li'));
+
+    items.slice(1).forEach(i => {
+        i.style = 'display:' + (navbarExpanded ? 'none' : 'block');
+    });
+
+    navbarExpanded = !navbarExpanded;
+}
