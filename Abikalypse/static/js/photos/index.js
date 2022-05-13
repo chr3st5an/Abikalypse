@@ -5,7 +5,7 @@ window.onload = () => {
 }
 
 window.onscroll = () => {
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 1000) {
         for (let container of document.querySelectorAll('.img-container')) {
             let rect = container.getBoundingClientRect();
 
