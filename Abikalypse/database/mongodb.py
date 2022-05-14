@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Optional
-from datetime import datetime
+from typing import Any, Dict, List, NoReturn, Optional
+from datetime import datetime, timedelta
 from random import randint
 from os import PathLike
+import functools
+import asyncio
 import copy
 import os
 
@@ -44,17 +46,14 @@ class MongoDB(object):
 
         self.__conn = MongoClient(host)[database]
 
-        required_collections = [
-            'students',
-            'photos'
-        ]
-
+        required_collections  = ['students']
         available_collections = self.__conn.list_collection_names()
 
         for collection_name in required_collections:
             if collection_name not in available_collections:
                 self.__conn.create_collection(collection_name)
 
+    @functools.cache
     def __find(self, collection: str, key: Any, value: Any) -> Optional[Any]:
         if not (collection and key):
             return None
@@ -83,9 +82,7 @@ class MongoDB(object):
             the student if found or None
         """
 
-        student = self.__find('students', '_id', _id)
-
-        if student is None:
+        if not (student := self.__find('students', '_id', _id)):
             return None
 
         return self.__init_student(student)
@@ -109,12 +106,17 @@ class MongoDB(object):
         have the exact same name
         """
 
-        student = self.__find('students', 'name', name)
-
-        if student is None:
+        if not (student := self.__find('students', 'name', name)):
             return None
 
         return self.__init_student(student)
+
+    @functools.cache
+    def fetch_all_students(self) -> List[Student]:
+        """Return a list with all students
+        """
+
+        return [self.__init_student(data) for data in self.__conn['students'].find()]
 
     def list_student_names(self) -> List[str]:
         """Retrieve a list containing the names of every student
@@ -126,13 +128,7 @@ class MongoDB(object):
             list of names
         """
 
-        return list(map(lambda data: data['name'], self.__conn['students'].find()))
-
-    def fetch_all_students(self) -> List[Student]:
-        """Return a list with all students
-        """
-
-        return [self.__init_student(data) for data in self.__conn['students'].find()]
+        return [data['name'] for data in self.fetch_all_students()]
 
     def insert_student(self, name: str, about: Dict[str, Any], photo: Optional[PathLike] = None) -> Student:
         """Create and insert a student into the database
@@ -150,12 +146,12 @@ class MongoDB(object):
         Returns
         -------
         Student
-            the student that just got inserted
+            the student that just got created
         """
 
         _id = randint(11111111, 99999999)
 
-        #> Ensure that the id is unique
+        # Ensure that the id is unique
         if self.find_student(_id):
             return self.insert_student(name, about, photo)
 
@@ -165,12 +161,12 @@ class MongoDB(object):
 
         return student
 
-    def insert_guestbook_entry(self, student_id: int, author: str, content: str) -> None:
+    def insert_guestbook_entry(self, target_student_id: int, author: str, content: str) -> None:
         """Create a guest book entry
 
         Parameters
         ----------
-        student_id : int
+        target_student_id : int
             Unique identifier of the student whose guest book
             is tried to be edited
         author : str
@@ -185,19 +181,53 @@ class MongoDB(object):
             does not exist
         """
 
-        student = self.find_student(student_id)
-
-        if not student:
+        if not (student := self.find_student(target_student_id)):
             raise StudentExistsError("mongodb: student doesn't exist")
 
         entry = {
-            'author': author,
-            'content': content,
+            'author'       : author,
+            'content'      : content,
             'creation_date': datetime.now().strftime('%d/%m/%Y')
         }
 
         student.guest_book.append(entry)
 
-        self.__conn['students'].update_one({'_id': student_id},
+        self.__conn['students'].update_one({'_id': target_student_id},
             {'$set': {'guest_book': copy.deepcopy(student.guest_book)}}
         )
+
+    async def loop_clear_cache(self, hours: int = 12) -> NoReturn:
+        """|coro|
+
+        Start a loop which constantly clears the
+        cache.
+
+        >>> asyncio.create_task(mongodb.loop_clear_cache())
+
+        Parameters
+        ----------
+        hours : int
+            Set the interval between every clearing
+            event, e.g. clear the cache
+            every `n` hours, by default 12
+        """
+
+        start_time = datetime.now() + timedelta(hours=hours)
+
+        while True:
+            if datetime.now() >= start_time and (start_time := datetime.now() + timedelta(hours=hours)):
+                await self.clear_cache()
+
+            await asyncio.sleep(30)
+
+    async def clear_cache(self) -> None:
+        """|coro|
+
+        Clear the cache
+        """
+
+        for attr in dir(self):
+            if isinstance(attr := getattr(self, attr), functools._lru_cache_wrapper):
+               attr.cache_clear()
+
+            await asyncio.sleep(0)
