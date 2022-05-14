@@ -9,7 +9,7 @@
         <main>
             <div class="card">
                 <h1 class="title">{{ student.forename + " " + student.surname[0] }}.</h1>
-                <div>
+                <div class="noselect">
                     <img draggable="false" src="{% if student.has_photo %}data:image/{{ student.photo.ext }};base64,{{ student.photo.decode() }}{% else %}/img/default_profile.png{% endif %}" alt="{{ student.forename }}s Profilfoto">
                 </div>
                 <section class="about">
