@@ -1,8 +1,8 @@
 """General config file for gunicorn
 """
 
-import os
-
-
-bind    = "0.0.0.0:8080"
-workers = (os.cpu_count() * 2) + 1
+bind         = "0.0.0.0:8080"
+preload      = True
+wsgi_app     = "Abikalypse:app"
+workers      = 3
+worker_class = "aiohttp.GunicornWebWorker"
