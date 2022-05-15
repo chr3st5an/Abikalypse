@@ -82,7 +82,7 @@ class Student(object):
         """
 
         self._id        = _id
-        self.name       = name
+        self.name       = name.lower()
         self.about      = deepcopy(about)
         self.photo      = photo
         self.guest_book = deepcopy(guest_book) if guest_book else []

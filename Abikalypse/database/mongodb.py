@@ -106,7 +106,7 @@ class MongoDB(object):
         have the exact same name
         """
 
-        if not (student := self.__find('students', 'name', name)):
+        if not (student := self.__find('students', 'name', name.lower())):
             return None
 
         return self.__init_student(student)
