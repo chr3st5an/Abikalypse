@@ -1,4 +1,4 @@
-"""Gunicorn config file for digitalocean
+"""General config file for gunicorn
 """
 
 import os
