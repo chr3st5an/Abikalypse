@@ -1,7 +1,7 @@
-aiohttp
-jinja2
-aiohttp_jinja2
-gunicorn
-pymongo
-dnspython
-python-dotenv
+aiohttp==3.7.4
+jinja2==3.1.1
+aiohttp_jinja2==1.5
+gunicorn==20.1.0
+pymongo==4.1.1
+dnspython==2.2.1
+python-dotenv==0.18.0
