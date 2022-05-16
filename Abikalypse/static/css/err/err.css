@@ -1,0 +1,18 @@
+#err {
+    margin: 10% 30% 0% 30%;
+    padding: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: red;
+    border-radius: 10px;
+}
+
+footer {
+    position: absolute;
+}
+
+@media only screen and (max-width: 800px) {
+    #err {
+        margin: 25% 10% 0 10%;
+    }
+}
