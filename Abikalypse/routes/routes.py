@@ -85,3 +85,9 @@ async def photo_index(request: Request) -> None:
     return {
         'files': os.listdir('./img/group_photos/')
     }
+
+
+@routes.get('/robots.txt')
+async def robots(request) -> None:
+    with open('../robots.txt') as f:
+        return web.Response(text=f.read())

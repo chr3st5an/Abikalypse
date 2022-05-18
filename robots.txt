@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /*.jpg$
+Disallow: /überlebende/
+
+User-agent: AdsBot-Google
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
