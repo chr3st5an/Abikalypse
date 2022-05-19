@@ -68,7 +68,6 @@ async def create_comment(request: Request) -> web.Response:
 
     try:
         entry = mongodb.insert_guestbook_entry(int(request.match_info.get('id')), data['username'], data['content'])
-        print(entry)
     except database.StudentExistsError:
         return web.Response(status=400)
 
