@@ -41,21 +41,12 @@
                     </h2>
                     <div>
                     {% if not student.guest_book %}
-                        <div>
+                        <div id="no-comments-yet">
                             <p>🔍 Hier gibt's noch nichts zu sehen...</p>
                         </div>
                     {% else %}
-                        {% for post in student.guest_book %}
-                            <div class="comment">
-                                <h4>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                    </svg>
-                                    {{ post["author"]|e }} ({{ post["creation_date"]|e }})
-                                </h4>
-                                <p>{{ post["content"]|e }}</p>
-                            </div>
+                        {% for comment in student.guest_book %}
+                            {% include "./survivors/comment.html" with context %}
                         {% endfor %}
                     {% endif %}
                     </div>
@@ -69,16 +60,13 @@
                         </svg>
                         Hinterlasse einen Eintrag
                     </h2>
-                    <form action="/create-comment/{{ student._id }}" method="POST">
+                    <form>
                         <div class="input-wrapper">
                             <div>
                                 <input type="text" name="username" placeholder="Dein Name" minlength="3" maxlength="16" pattern="[a-zA-Z]\w+" autocomplete required>
                             </div>
                             <div>
                                 <input type="text" name="content" placeholder="Eintrag fürs Gästebuch" minlength="4" maxlength="128" autocomplete required>
-                            </div>
-                            <div>
-                                <input type="text" name="context-url" value="{{ request.url }}" style="display:none;">
                             </div>
                         </div>
                         <br/>
@@ -96,6 +84,5 @@
             </div>
         </main>
         <div class="toast">
-            <p><i>Da stimmt etwas nicht!</i></p>
         </div>
 {% endblock %}

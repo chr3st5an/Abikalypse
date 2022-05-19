@@ -53,7 +53,6 @@ class MongoDB(object):
             if collection_name not in available_collections:
                 self.__conn.create_collection(collection_name)
 
-    @functools.cache
     def __find(self, collection: str, key: Any, value: Any) -> Optional[Any]:
         if not (collection and key):
             return None
@@ -161,7 +160,7 @@ class MongoDB(object):
 
         return student
 
-    def insert_guestbook_entry(self, target_student_id: int, author: str, content: str) -> None:
+    def insert_guestbook_entry(self, target_student_id: int, author: str, content: str) -> dict[str, str]:
         """Create a guest book entry
 
         Parameters
@@ -173,6 +172,11 @@ class MongoDB(object):
             The author of the message that is tried to be added
         content : str
             The message that is tried to be added
+
+        Returns
+        -------
+        dict[str, str]
+            A dict representing the entry that got inserted
 
         Raises
         ------
@@ -195,6 +199,8 @@ class MongoDB(object):
         self.__conn['students'].update_one({'_id': target_student_id},
             {'$set': {'guest_book': copy.deepcopy(student.guest_book)}}
         )
+
+        return entry
 
     async def loop_clear_cache(self, hours: int = 12) -> NoReturn:
         """|coro|
