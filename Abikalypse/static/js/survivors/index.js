@@ -1,3 +1,1 @@
-window.onload = () => {
-    preventRightClickOnImages();
-};
+window.addEventListener('load', () => { preventRightClickOnImages() })

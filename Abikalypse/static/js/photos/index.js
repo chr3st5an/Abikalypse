@@ -1,10 +1,10 @@
-window.onload = () => {
+window.addEventListener('load', () => {
     for (let container of document.querySelectorAll('.img-container')) {
         container.addEventListener('mousedown', e => e.preventDefault() || false);
     }
-}
+})
 
-window.onscroll = () => {
+window.addEventListener('scroll', () => {
     if (window.innerWidth > 1000) {
         for (let container of document.querySelectorAll('.img-container')) {
             let rect = container.getBoundingClientRect();
@@ -16,4 +16,4 @@ window.onscroll = () => {
             }
         }
     }
-}
+})

@@ -3,6 +3,8 @@ console.log("Warum lieben Frauen objektorientierte Männer?");
 console.log("- Weil sie Klasse haben");
 
 
+let navbarExpanded = false;
+
 /**
  * Prevents the context menu when an image is selected
  */
@@ -17,17 +19,6 @@ const preventRightClickOnImages = () => {
         }, false);
     }
 }
-
-/**
- * Removes every script tag within the body tag
- */
-const removeScriptTags = () => {
-    for (let scriptTag of document.querySelectorAll('body script')) {
-        scriptTag.remove();
-    }
-}
-
-let navbarExpanded = false;
 
 /**
  * Expand / collapse the navbar

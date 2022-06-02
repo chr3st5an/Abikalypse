@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener('load', () => {
     preventRightClickOnImages();
 
     /* Verify user input */
@@ -28,7 +28,7 @@ window.onload = () => {
             return postData(author, content);
         }
     }
-}
+})
 
 const postData = (...args) => {
     let request = new XMLHttpRequest();
